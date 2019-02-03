@@ -46,7 +46,7 @@ class Post
         $statement->execute();
         foreach ($statement->fetchAll() as $post) {
             print_r($post);
-            $list[] = new Post($post->id, $post->content, $post->imageloc);
+            $list[] = new Post($post->id, $post->content, $post->image_location);
         }
         return $list;
     }
@@ -59,6 +59,6 @@ class Post
         $statement->bindValue('id', $id);
         $statement->execute();
         $post = $statement->fetch();
-        return new Post($post->id, $post->content, $post->imageloc);
+        return new Post($post->id, $post->content, $post->image_location);
     }
 }
