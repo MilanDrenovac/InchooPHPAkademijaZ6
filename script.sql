@@ -4,7 +4,8 @@ use social_network;
 
 create table post(
 id int not null primary key auto_increment,
-content text
+content text,
+image_location text
 )engine=InnoDB;
 
 insert into post (content) values ('Evo danas pada kiša opet :('), ('Mokar sam ko pas...');

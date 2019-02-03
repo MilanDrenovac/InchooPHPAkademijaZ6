@@ -6,10 +6,13 @@ class Post
 
     private $content;
 
-    public function __construct($id, $content)
+    private $imageloc;
+
+    public function __construct($id, $content, $imageloc)
     {
         $this->setId($id);
         $this->setContent($content);
+        $this->setImageloc($imageloc);
     }
 
     public function __set($name, $value)
@@ -42,7 +45,8 @@ class Post
         $statement = $db->prepare("select * from post order by id desc ");
         $statement->execute();
         foreach ($statement->fetchAll() as $post) {
-            $list[] = new Post($post->id, $post->content);
+            print_r($post);
+            $list[] = new Post($post->id, $post->content, $post->imageloc);
         }
         return $list;
     }
@@ -55,6 +59,6 @@ class Post
         $statement->bindValue('id', $id);
         $statement->execute();
         $post = $statement->fetch();
-        return new Post($post->id, $post->content);
+        return new Post($post->id, $post->content, $post->imageloc);
     }
 }
