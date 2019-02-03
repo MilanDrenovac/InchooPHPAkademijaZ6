@@ -17,7 +17,9 @@
         <a href="<?php echo App::config('url') ?>Index/view/<?= $post->getId() ?> ">
             <?= htmlspecialchars($post->getContent()) ?>
         </a>
+        <?php if($post->getImageloc() != NULL) : ?>
         <img src="<?php echo App::config('url').'img/'.$post->getImageloc()?>">
+        <?php endif; ?>
     </p>
 
 <?php endforeach; ?>

@@ -6,6 +6,9 @@
 </head>
 <body>
 <?php echo $content ?>
-<img src="<?php echo App::config('url').'img/'.$post->getImageloc()?>">
+<?php if($post->getImageloc() != NULL) : ?>
+    <img src="<?php echo App::config('url').'img/'.$post->getImageloc()?>">
+<?php endif; ?>
+
 </body>
 </html>
