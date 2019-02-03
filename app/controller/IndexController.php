@@ -7,6 +7,7 @@ class IndexController
         $view = new View();
         $posts = Post::all();
 
+
         $view->render('index', [
             "posts" => $posts
         ]);
@@ -14,10 +15,16 @@ class IndexController
 
     public function view($id = 0)
     {
+        $post = Post::find($id);
+        if ($post === NULL){
+            header("HTTP/1.0 404 Not Found");
+            exit();
+        }
         $view = new View();
-
+        $comments = Comment::getComments($id);
         $view->render('view', [
-            "post" => Post::find($id)
+            "post" => $post,
+            "comments" => $comments
         ]);
     }
 
@@ -33,7 +40,6 @@ class IndexController
                 echo 'File is not a jpeg image, upload not allowed';
                 exit();
             }
-
             if (move_uploaded_file($_FILES['userfile']['tmp_name'], $uploadfile)) {
                 echo "File is valid, and was successfully uploaded.\n";
             } else {
@@ -54,7 +60,36 @@ class IndexController
             header('Location: ' . App::config('url'));
         }
     }
+    public function newComment()
+    {
+        $data = $this->_validate($_POST);
+        if ($data === false) {
+            header('Location: ' . App::config('url'));
+        } else {
+            $connection = Db::connect();
+            $sql = 'INSERT INTO comments (content,postid) VALUES (:content,:postid)';
+            $stmt = $connection->prepare($sql);
+            $stmt->bindValue('content', $data['content']);
+            $stmt->bindValue('postid', $data['postid']);
+            $stmt->execute();
+            header('Location: ' . App::config('url').'Index/view/'.$data['postid']);
+        }
 
+    }
+
+    public function deletePost(){
+        $data = $_POST;
+        if ($data === false) {
+            header('Location: ' . App::config('url'));
+        } else {
+            $connection = Db::connect();
+            $sql = 'DELETE FROM post WHERE id = :id';
+            $stmt = $connection->prepare($sql);
+            $stmt->bindValue('id', $data['postid']);
+            $stmt->execute();
+            header('Location: ' . App::config('url'));
+        }
+    }
     /**
      * @param $data
      * @return array|bool

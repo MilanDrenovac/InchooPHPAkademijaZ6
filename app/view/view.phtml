@@ -1,3 +1,30 @@
 <p><?= htmlspecialchars($post->getContent()) ?></p>
+<?php if($post->getImageloc() != NULL) : ?>
+    <img src="<?php echo App::config('url').'img/'.$post->getImageloc()?>">
+<?php endif; ?>
+<form enctype="multipart/form-data" method="post" action="<?php echo App::config('url') ?>Index/deletePost">
+    <input type="hidden" id="postid" name="postid" value="<?= $post->getId()?>">
+    <button type="submit" id="delete" class="btn btn-primary">Delete Post</button>
+
+</form>
 
 <h3>Comments</h3>
+
+
+<?php foreach ($comments as $comment): ?>
+    <p>
+        <?= htmlspecialchars($comment->getContent().' '.date('d/m/Y H:i',strtotime($comment->getTime())) ) ?>
+    </p>
+
+<?php endforeach; ?>
+
+
+<form method="post" action="<?php echo App::config('url') ?>Index/newComment">
+
+    <div class="form-group">
+        <label for="content">Comment on this post</label>
+        <input id="content" name="content">
+        <input type="hidden" id="postid" name="postid" value="<?= $post->getId()?>">
+    </div>
+    <button type="submit" class="btn btn-primary">Save</button>
+</form>

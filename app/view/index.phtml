@@ -14,8 +14,8 @@
 
 <?php foreach ($posts as $post): ?>
     <p>
-        <a href="<?php echo App::config('url') ?>Index/view/<?= $post->getId() ?> ">
-            <?= htmlspecialchars($post->getContent()) ?>
+        <a href="<?php echo App::config('url') ?>Index/view/<?= $post->getId()?> ">
+            <?= htmlspecialchars($post->getContent().' '.date('d/m/Y H:i',strtotime($post->getTime())).' '.$post->getCommentcount() ) ?>
         </a>
         <?php if($post->getImageloc() != NULL) : ?>
         <img src="<?php echo App::config('url').'img/'.$post->getImageloc()?>">
