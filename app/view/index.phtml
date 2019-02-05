@@ -22,7 +22,7 @@
         </div>
         <?php if($post->getImageloc() != NULL) : ?>
         <div class="six columns" style="border-style: inset;">
-        <img src="<?php echo App::config('url').'img/'.$post->getImageloc()?>" style="width: 50%; height: auto;">
+        <img src="<?php echo App::config('url').'img/'.$post->getImageloc()?>" style="width: 50%; height: auto;" alt="">
         </div>
         <?php endif; ?>
     </div>
