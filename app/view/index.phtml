@@ -17,8 +17,8 @@
         <div class="six columns" style="border-style: none none none solid;">
             <p style="padding-left: 10px">
         <a href="<?php echo App::config('url') ?>Index/view/<?= $post->getId()?> ">
-            <?= htmlspecialchars($post->getContent().' '.date('d.m.Y H:i',strtotime($post->getTime())).' '.$post->getCommentcount() ) ?>
-        </a></p>
+            <?= htmlspecialchars($post->getContent()).' '?></a><br /><?= htmlspecialchars(date('d.m.Y H:i',strtotime($post->getTime())))?> <br/> <?= htmlspecialchars(' Comments: ('.$post->getCommentcount().')' ) ?>
+        </p>
         </div>
         <?php if($post->getImageloc() != NULL) : ?>
         <div class="six columns" style="border-style: inset;">
