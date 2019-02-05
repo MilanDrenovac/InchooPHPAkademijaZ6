@@ -14,14 +14,14 @@
 
 <?php foreach ($posts as $post): ?>
     <div class="row">
-    <p>
-        <div class="six columns">
+        <div class="six columns" style="border-style: none none none solid;">
+            <p style="padding-left: 10px">
         <a href="<?php echo App::config('url') ?>Index/view/<?= $post->getId()?> ">
             <?= htmlspecialchars($post->getContent().' '.date('d.m.Y H:i',strtotime($post->getTime())).' '.$post->getCommentcount() ) ?>
         </a></p>
         </div>
         <?php if($post->getImageloc() != NULL) : ?>
-        <div class="six columns">
+        <div class="six columns" style="border-style: inset;">
         <img src="<?php echo App::config('url').'img/'.$post->getImageloc()?>" style="width: 50%; height: auto;">
         </div>
         <?php endif; ?>
