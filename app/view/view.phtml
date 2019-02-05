@@ -1,7 +1,7 @@
 <div class="container">
 <p><?= htmlspecialchars($post->getContent()) ?></p>
 <?php if($post->getImageloc() != NULL) : ?>
-    <img src="<?php echo App::config('url').'img/'.$post->getImageloc()?>" alt="">
+    <img src="<?php echo App::config('url').'img/'.htmlspecialchars($post->getImageloc())?>" alt="">
 <?php endif; ?>
 <form enctype="multipart/form-data" method="post" action="<?php echo App::config('url') ?>Index/deletePost">
     <input type="hidden" id="postid" name="postid" value="<?= $post->getId()?>">
