@@ -1,3 +1,4 @@
+<div class="container">
 <form enctype="multipart/form-data" method="post" action="<?php echo App::config('url') ?>Index/newPost">
 
     <div class="form-group">
@@ -11,15 +12,19 @@
 
 </form>
 
-
 <?php foreach ($posts as $post): ?>
+    <div class="row">
     <p>
+        <div class="six columns">
         <a href="<?php echo App::config('url') ?>Index/view/<?= $post->getId()?> ">
-            <?= htmlspecialchars($post->getContent().' '.date('d/m/Y H:i',strtotime($post->getTime())).' '.$post->getCommentcount() ) ?>
-        </a>
+            <?= htmlspecialchars($post->getContent().' '.date('d.m.Y H:i',strtotime($post->getTime())).' '.$post->getCommentcount() ) ?>
+        </a></p>
+        </div>
         <?php if($post->getImageloc() != NULL) : ?>
-        <img src="<?php echo App::config('url').'img/'.$post->getImageloc()?>">
+        <div class="six columns">
+        <img src="<?php echo App::config('url').'img/'.$post->getImageloc()?>" style="width: 50%; height: auto;">
+        </div>
         <?php endif; ?>
-    </p>
-
+    </div>
 <?php endforeach; ?>
+</div>

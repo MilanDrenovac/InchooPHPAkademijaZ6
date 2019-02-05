@@ -1,3 +1,4 @@
+<div class="container">
 <p><?= htmlspecialchars($post->getContent()) ?></p>
 <?php if($post->getImageloc() != NULL) : ?>
     <img src="<?php echo App::config('url').'img/'.$post->getImageloc()?>">
@@ -13,7 +14,7 @@
 
 <?php foreach ($comments as $comment): ?>
     <p>
-        <?= htmlspecialchars($comment->getContent().' '.date('d/m/Y H:i',strtotime($comment->getTime())) ) ?>
+        <?= htmlspecialchars($comment->getContent().' '.date('d.m.Y H:i',strtotime($comment->getTime())) ) ?>
     </p>
 
 <?php endforeach; ?>
@@ -28,3 +29,4 @@
     </div>
     <button type="submit" class="btn btn-primary">Save</button>
 </form>
+</div>
