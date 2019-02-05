@@ -14,7 +14,7 @@
 
 <?php foreach ($comments as $comment): ?>
     <p>
-        <?= htmlspecialchars($comment->getContent().' '.date('d.m.Y H:i',strtotime($comment->getTime())) ) ?>
+        <?= htmlspecialchars($comment->getContent().' '.date('d.m.Y. H:i',strtotime($comment->getTime())) ) ?>
     </p>
 
 <?php endforeach; ?>
